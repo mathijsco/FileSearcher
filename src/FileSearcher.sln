@@ -1,0 +1,69 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileSearcher", "FileSearcher\FileSearcher.csproj", "{3EA05A50-4A02-4D66-A398-8EED6D31B6F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileSearcher.Plugin.CSharp", "FileSearcher.Plugin.CSharp\FileSearcher.Plugin.CSharp.csproj", "{05E6717B-72D2-45C0-9FEF-10433A5C7972}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileSearcher.Plugin.PsExecutable", "FileSearcher.Plugin.PsExecutable\FileSearcher.Plugin.PsExecutable.csproj", "{5765C176-C175-4825-84A6-3586D2394CC3}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://mathijsvg.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = FileSearcher\\FileSearcher.csproj
+		SccProjectName1 = FileSearcher
+		SccLocalPath1 = FileSearcher
+		SccProjectUniqueName2 = FileSearcher.Plugin.CSharp\\FileSearcher.Plugin.CSharp.csproj
+		SccProjectName2 = FileSearcher.Plugin.CSharp
+		SccLocalPath2 = FileSearcher.Plugin.CSharp
+		SccProjectUniqueName3 = FileSearcher.Plugin.PsExecutable\\FileSearcher.Plugin.PsExecutable.csproj
+		SccProjectName3 = FileSearcher.Plugin.PsExecutable
+		SccLocalPath3 = FileSearcher.Plugin.PsExecutable
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3EA05A50-4A02-4D66-A398-8EED6D31B6F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EA05A50-4A02-4D66-A398-8EED6D31B6F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EA05A50-4A02-4D66-A398-8EED6D31B6F3}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{3EA05A50-4A02-4D66-A398-8EED6D31B6F3}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{3EA05A50-4A02-4D66-A398-8EED6D31B6F3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3EA05A50-4A02-4D66-A398-8EED6D31B6F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EA05A50-4A02-4D66-A398-8EED6D31B6F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EA05A50-4A02-4D66-A398-8EED6D31B6F3}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{3EA05A50-4A02-4D66-A398-8EED6D31B6F3}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{3EA05A50-4A02-4D66-A398-8EED6D31B6F3}.Release|x86.ActiveCfg = Release|Any CPU
+		{05E6717B-72D2-45C0-9FEF-10433A5C7972}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05E6717B-72D2-45C0-9FEF-10433A5C7972}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05E6717B-72D2-45C0-9FEF-10433A5C7972}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{05E6717B-72D2-45C0-9FEF-10433A5C7972}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{05E6717B-72D2-45C0-9FEF-10433A5C7972}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{05E6717B-72D2-45C0-9FEF-10433A5C7972}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05E6717B-72D2-45C0-9FEF-10433A5C7972}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05E6717B-72D2-45C0-9FEF-10433A5C7972}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{05E6717B-72D2-45C0-9FEF-10433A5C7972}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{05E6717B-72D2-45C0-9FEF-10433A5C7972}.Release|x86.ActiveCfg = Release|Any CPU
+		{5765C176-C175-4825-84A6-3586D2394CC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5765C176-C175-4825-84A6-3586D2394CC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5765C176-C175-4825-84A6-3586D2394CC3}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{5765C176-C175-4825-84A6-3586D2394CC3}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{5765C176-C175-4825-84A6-3586D2394CC3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5765C176-C175-4825-84A6-3586D2394CC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5765C176-C175-4825-84A6-3586D2394CC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5765C176-C175-4825-84A6-3586D2394CC3}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{5765C176-C175-4825-84A6-3586D2394CC3}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{5765C176-C175-4825-84A6-3586D2394CC3}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

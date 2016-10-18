@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3EA05A50-4A02-4D66-A398-8EED6D31B6F3}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FileSearcher</RootNamespace>
+    <AssemblyName>FileSearcher</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\packages\DotNetZip.1.9.3\lib\net20\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Helpers\TimeSpanExtensions.cs" />
+    <Compile Include="Helpers\UacUtility.cs" />
+    <Compile Include="Helpers\VisibleFilterHelper.cs" />
+    <Compile Include="Model\Contexts\DuplicateFileCriterionContext.cs" />
+    <Compile Include="Model\CriterionSchemas\AttributeCriterion.cs" />
+    <Compile Include="Model\CriterionSchemas\ContentCriterion.cs" />
+    <Compile Include="Model\CriterionSchemas\ContentRegexCriterion.cs" />
+    <Compile Include="Model\CriterionSchemas\CriteriaFactory.cs" />
+    <Compile Include="Model\CriterionSchemas\DateCriterion.cs" />
+    <Compile Include="Model\CriterionSchemas\DuplicateFileCriterion.cs" />
+    <Compile Include="Model\CriterionSchemas\IPostProcessingCriterion.cs" />
+    <Compile Include="Model\CriterionSchemas\NameCriterion.cs" />
+    <Compile Include="Model\CriterionSchemas\NameRegexCriterion.cs" />
+    <Compile Include="Model\CriterionSchemas\NameAndZipCriterion.cs" />
+    <Compile Include="Model\CriterionSchemas\SizeCriterion.cs" />
+    <Compile Include="Model\DuplicateAnalyse\ByteArrayComparer.cs" />
+    <Compile Include="Model\DuplicateAnalyse\DuplicateEntry.cs" />
+    <Compile Include="Model\DuplicateAnalyse\DuplicatesContainer.cs" />
+    <Compile Include="Model\DuplicateAnalyse\LazyDisposable.cs" />
+    <Compile Include="Model\EncodingDetection\EncodingDetector.cs" />
+    <Compile Include="Model\EncodingDetection\EncodingWrapper.cs" />
+    <Compile Include="Model\EncodingDetection\IEncodingFactory.cs" />
+    <Compile Include="Model\Engine\CriterionBase.cs" />
+    <Compile Include="Model\Contexts\ZipCriterionContext.cs" />
+    <Compile Include="Model\Engine\CriterionWeight.cs" />
+    <Compile Include="Model\Engine\ICriterionContext.cs" />
+    <Compile Include="Model\Engine\SearchException.cs" />
+    <Compile Include="Model\Engine\EngineOptions.cs" />
+    <Compile Include="Model\Engine\ICriterion.cs" />
+    <Compile Include="Model\Engine\MurMurHash3.cs" />
+    <Compile Include="Model\Engine\SearchEngine.cs" />
+    <Compile Include="Model\Engine\SearchExceptionFactory.cs" />
+    <Compile Include="Model\Engine\SearchResult.cs" />
+    <Compile Include="Model\Engine\TimedCallback.cs" />
+    <Compile Include="Model\Entities\FileDateOption.cs" />
+    <Compile Include="Plugin\ErrorPlugin.cs" />
+    <Compile Include="Plugin\ICriterionPlugin.cs" />
+    <Compile Include="Plugin\IPluginFacade.cs" />
+    <Compile Include="Plugin\IViewBuilderFactory.cs" />
+    <Compile Include="Plugin\Plugins.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\Configuration\DefaultFilter.cs" />
+    <Compile Include="Ui\Entries\IPathEntry.cs" />
+    <Compile Include="Ui\Controls\PathEntryListViewItem.cs" />
+    <Compile Include="Ui\Controls\LargeListViewUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ui\Controls\LargeListViewUserControl.Designer.cs">
+      <DependentUpon>LargeListViewUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\Entries\PathZipEntry.cs" />
+    <Compile Include="Ui\Entries\PathDuplicateEntry.cs" />
+    <Compile Include="Ui\Entries\PathEntry.cs" />
+    <Compile Include="Ui\Entries\PathEventArgs.cs" />
+    <Compile Include="Ui\Entries\SearchExceptionEntry.cs" />
+    <Compile Include="Ui\Entries\VisibleFilterEntry.cs" />
+    <Compile Include="Ui\ExceptionsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ui\ExceptionsForm.Designer.cs">
+      <DependentUpon>ExceptionsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ui\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\SettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ui\SettingsForm.Designer.cs">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\Configuration\VisibleFilter.cs" />
+    <Compile Include="Ui\ViewBuilders\ZipViewBuilder.cs" />
+    <Compile Include="Ui\ViewBuilders\DuplicateViewBuilder.cs" />
+    <Compile Include="Ui\ViewBuilders\DefaultViewBuilder.cs" />
+    <Compile Include="Ui\ViewBuilders\IViewBuilder.cs" />
+    <Compile Include="Ui\ViewBuilders\ViewBuilderFactory.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ui\Controls\LargeListViewUserControl.resx">
+      <DependentUpon>LargeListViewUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ui\ExceptionsForm.resx">
+      <DependentUpon>ExceptionsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ui\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ui\SettingsForm.resx">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
