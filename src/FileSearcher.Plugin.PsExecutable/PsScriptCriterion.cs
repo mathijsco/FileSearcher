@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using FileSearcher.Model.Engine;
-using PowerShellExtension;
+using WhiteChamber.PowerShellExtension;
 
 namespace FileSearcher.Plugin.PsExecutable
 {
