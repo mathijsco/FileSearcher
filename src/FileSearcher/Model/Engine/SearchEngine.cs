@@ -188,6 +188,10 @@ namespace FileSearcher.Model.Engine
                 {
                     _expections.Add(SearchExceptionFactory.Build(directoryInfo, ex));
                 }
+                catch (Exception ex)
+                {
+                    _expections.Add(SearchExceptionFactory.Build(directoryInfo, ex));
+                }
                 if (infos == null) yield break;
 
                 foreach (var item in infos.SelectMany(s => ListAllFileSystemInfo(s, level + 1)))

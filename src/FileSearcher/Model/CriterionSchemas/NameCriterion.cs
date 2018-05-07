@@ -12,7 +12,7 @@ namespace FileSearcher.Model.CriterionSchemas
         private static readonly string StarWildcard = Regex.Escape("*");
         private static readonly string QuestionWildcard = Regex.Escape("?");
 
-        private string[] _exactMatches;
+        private string[][] _exactMatches;
         private Regex[] _regexMatches;
 
         private readonly bool _ignoreCasing;
@@ -59,9 +59,9 @@ namespace FileSearcher.Model.CriterionSchemas
             return false;
         }
 
-        private bool SimpleMatch(string filePath, string value)
+        private bool SimpleMatch(string filePath, string[] words)
         {
-            return filePath.IndexOf(value, _ignoreCasing ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal) >= 0;
+            return words.All(value => filePath.IndexOf(value, _ignoreCasing ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal) >= 0);
         }
 
         private static bool WildcardMatch(string filePath, Regex value)
@@ -71,7 +71,7 @@ namespace FileSearcher.Model.CriterionSchemas
 
         private void BuildMatches(string value)
         {
-            var exactMatches = new List<string>();
+            var exactMatches = new List<string[]>();
             var regexMatches = new List<Regex>();
 
             var split = value.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
@@ -87,7 +87,7 @@ namespace FileSearcher.Model.CriterionSchemas
                     regexMatches.Add(new Regex(string.Concat("^", valueRegex, "$"), RegexOptions.Compiled | (_ignoreCasing ? RegexOptions.IgnoreCase : RegexOptions.None)));
                 }
                 else
-                    exactMatches.Add(item);
+                    exactMatches.Add(item.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
             }
 
             _exactMatches = exactMatches.ToArray();
