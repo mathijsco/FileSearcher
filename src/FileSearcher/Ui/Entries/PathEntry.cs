@@ -27,10 +27,14 @@ namespace FileSearcher.Ui.Entries
 
         public virtual ListViewItem BuildListViewItem()
         {
-            var name = _fileSystemInfo.FullName;
+            var name = _fileSystemInfo.Name;
             if (this.IsDirectory)
                 name = string.Concat("[", name, "]");
-            return new ListViewItem(name);
+
+            var item = new ListViewItem(name);
+            item.SubItems.Add(Path.GetDirectoryName(this.FileSystemInfo.FullName));
+
+            return item;
         }
     }
 }

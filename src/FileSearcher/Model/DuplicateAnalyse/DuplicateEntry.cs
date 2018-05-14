@@ -49,7 +49,7 @@ namespace FileSearcher.Model.DuplicateAnalyse
                 return false;
             if (_container.CheckSize && info.Length != otherInfo.Length)
                 return false;
-            if (_container.CheckContent && info.Length > 0 && !CompareFiles(this, other)) // Size must be larger than 0, otherwise opening file is waste of time.
+            if (_container.CheckContent && (info.Length == 0 || !CompareFiles(this, other))) // Size must be larger than 0, otherwise opening file is waste of time.
                 return false;
 
             return true;

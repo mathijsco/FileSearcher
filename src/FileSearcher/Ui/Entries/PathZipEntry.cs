@@ -1,7 +1,5 @@
-﻿using System.Drawing;
+﻿using System.IO;
 using System.Windows.Forms;
-using System.IO;
-using System.Collections.Generic;
 
 namespace FileSearcher.Ui.Entries
 {
@@ -17,8 +15,16 @@ namespace FileSearcher.Ui.Entries
 
         public override ListViewItem BuildListViewItem()
         {
-            var item = new ListViewItem(this.FileSystemInfo.FullName);
-            item.SubItems.Add(_internalName);
+            // Normal file
+            if (_internalName == null)
+                return base.BuildListViewItem();
+
+            // ZIP content
+            var name = Path.GetFileName(_internalName);
+            var internalPath = Path.GetDirectoryName(_internalName);
+
+            var item = new ListViewItem(name);
+            item.SubItems.Add(Path.Combine(this.FileSystemInfo.FullName, internalPath));
 
             return item;
         }

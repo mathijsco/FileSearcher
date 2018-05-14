@@ -1,9 +1,8 @@
-﻿using System;
-using System.Linq;
-using FileSearcher.Model.Engine;
-using System.IO;
+﻿using FileSearcher.Model.Engine;
 using Ionic.Zip;
-using System.Collections.ObjectModel;
+using System;
+using System.IO;
+using System.Linq;
 
 namespace FileSearcher.Model.CriterionSchemas
 {
@@ -21,29 +20,27 @@ namespace FileSearcher.Model.CriterionSchemas
 
         public override bool IsMatch(FileSystemInfo fileSystemInfo, ICriterionContext context)
         {
-            // Normal match
-            if (base.IsMatch(fileSystemInfo, context))
-                return true;
-
-            // Should be ending with .ZIP
-            if (string.IsNullOrEmpty(fileSystemInfo.Extension) || !fileSystemInfo.Extension.Equals(".zip", StringComparison.OrdinalIgnoreCase))
-                return false;
-
             // All found entries in the ZIP file.
             var myContext = (ZipCriterionContext)context;
 
-            using (var zip = ZipFile.Read(fileSystemInfo.FullName))
+            var isZip = !string.IsNullOrEmpty(fileSystemInfo.Extension) && fileSystemInfo.Extension.Equals(".zip", StringComparison.OrdinalIgnoreCase);
+            if (isZip)
             {
-                foreach (var entry in zip.EntryFileNames.Select(e => e.Replace('/', '\\')))
+                using (var zip = ZipFile.Read(fileSystemInfo.FullName))
                 {
-                    if (IsMatch(this.MatchFullPath ? Path.Combine(fileSystemInfo.FullName, entry) : Path.GetFileName(entry)))
+                    foreach (var entry in zip.EntryFileNames.Select(e => e.Replace('/', '\\').TrimEnd('\\')))
                     {
-                        myContext.Childs.Add(entry);
+                        if (IsMatch(this.MatchFullPath ? Path.Combine(fileSystemInfo.FullName, entry) : Path.GetFileName(entry)))
+                        {
+                            myContext.Childs.Add(entry);
+                        }
                     }
                 }
             }
 
-            return myContext.Childs.Count > 0;
+            // Normal match of file name
+            myContext.ArchiveNameIsMatch = base.IsMatch(fileSystemInfo, context);
+            return myContext.ArchiveNameIsMatch || myContext.Childs.Count > 0;
         }
 
         public override ICriterionContext BuildContext()

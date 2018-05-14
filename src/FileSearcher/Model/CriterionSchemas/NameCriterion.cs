@@ -10,7 +10,7 @@ namespace FileSearcher.Model.CriterionSchemas
     internal class NameCriterion : CriterionBase, ICriterion
     {
         // Check if there is a * or ? inside an existing word
-        private static readonly Regex LikeRegex = new Regex(@"\S[*?]\S", RegexOptions.Compiled);
+        private static readonly Regex LikeRegex = new Regex(@"(\S[*?]\S)|([*?])", RegexOptions.Compiled);
         private static readonly string StarWildcard = Regex.Escape("*");
         private static readonly string QuestionWildcard = Regex.Escape("?");
 
@@ -76,8 +76,10 @@ namespace FileSearcher.Model.CriterionSchemas
 
                 foreach (var word in words)
                 {
+                    var likeResult = LikeRegex.Match(word);
+
                     // Build regex for a like statement
-                    if (LikeRegex.Match(word).Success)
+                    if (likeResult.Success && likeResult.Groups[1].Success)
                     {
                         var valueRegex = Regex.Escape(word)
                                .Replace(QuestionWildcard, @"\w{1}")
@@ -87,7 +89,12 @@ namespace FileSearcher.Model.CriterionSchemas
                         andStatements.Add((filePath) => regex.IsMatch(filePath));
                     }
                     else
-                        andStatements.Add((filePath) => filePath.IndexOf(word, _ignoreCasing ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal) >= 0);
+                    {
+                        var w = word;
+                        if (likeResult.Success && likeResult.Groups[2].Success)
+                            w = w.Replace("*", "").Replace("*", "");
+                        andStatements.Add((filePath) => filePath.IndexOf(w, _ignoreCasing ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal) >= 0);
+                    }
                 }
 
                 // Add the AND statement

@@ -15,8 +15,13 @@ namespace FileSearcher.Ui.ViewBuilders
         {
             get
             {
-                return new[] { new Tuple<string, int>("Results", -1)  };
+                return new[]
+                {
+                    new Tuple<string, int>("File name", 250),
+                    new Tuple<string, int>("Directory", -1)
+                };
             }
         }
+        
     }
 }

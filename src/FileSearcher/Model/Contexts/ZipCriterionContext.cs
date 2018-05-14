@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
 
 namespace FileSearcher.Model.Engine
 {
@@ -13,6 +9,8 @@ namespace FileSearcher.Model.Engine
         {
             this.Childs = new Collection<string>();
         }
+
+        public bool ArchiveNameIsMatch { get; set; }
 
         public IList<string> Childs { get; private set; }
     }
