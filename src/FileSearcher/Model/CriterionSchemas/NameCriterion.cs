@@ -9,11 +9,12 @@ namespace FileSearcher.Model.CriterionSchemas
 {
     internal class NameCriterion : CriterionBase, ICriterion
     {
+        // Check if there is a * or ? inside an existing word
+        private static readonly Regex LikeRegex = new Regex(@"\S[*?]\S", RegexOptions.Compiled);
         private static readonly string StarWildcard = Regex.Escape("*");
         private static readonly string QuestionWildcard = Regex.Escape("?");
 
-        private string[][] _exactMatches;
-        private Regex[] _regexMatches;
+        private Func<string, bool>[][] _matches;
 
         private readonly bool _ignoreCasing;
         protected readonly bool MatchFullPath;
@@ -50,48 +51,50 @@ namespace FileSearcher.Model.CriterionSchemas
             return IsMatch(name);
         }
 
-        protected bool IsMatch(string fileName)
+        protected bool IsMatch(string filePath)
         {
-            if (_exactMatches.Length > 0 && _exactMatches.Any(m => SimpleMatch(fileName, m)))
-                return true;
-            if (_regexMatches.Length > 0 && _regexMatches.Any(m => WildcardMatch(fileName, m)))
-                return true;
+            foreach (var group in _matches)
+            {
+                var l = filePath.LastIndexOfAny(new[] { '/', '\\' });
+                var isMatch = group.All(g => g(filePath))
+                    && (l == -1 || group.Any(g => g(filePath.Substring(l))));
+
+                if (isMatch) return true;
+            }
             return false;
-        }
-
-        private bool SimpleMatch(string filePath, string[] words)
-        {
-            return words.All(value => filePath.IndexOf(value, _ignoreCasing ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal) >= 0);
-        }
-
-        private static bool WildcardMatch(string filePath, Regex value)
-        {
-            return value.IsMatch(filePath);
         }
 
         private void BuildMatches(string value)
         {
-            var exactMatches = new List<string[]>();
-            var regexMatches = new List<Regex>();
+            var orStatements = new List<Func<string, bool>[]>(); ;
 
             var split = value.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
             foreach (var item in split)
             {
-                // Build regex for a like statement
-                if (item.Contains("*") || item.Contains("?"))
-                {
-                    var valueRegex = Regex.Escape(item)
-                       .Replace(QuestionWildcard, ".{1}")
-                       .Replace(StarWildcard, ".*");
+                var words = item.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                var andStatements = new List<Func<string, bool>>();
 
-                    regexMatches.Add(new Regex(string.Concat("^", valueRegex, "$"), RegexOptions.Compiled | (_ignoreCasing ? RegexOptions.IgnoreCase : RegexOptions.None)));
+                foreach (var word in words)
+                {
+                    // Build regex for a like statement
+                    if (LikeRegex.Match(word).Success)
+                    {
+                        var valueRegex = Regex.Escape(word)
+                               .Replace(QuestionWildcard, @"\w{1}")
+                               .Replace(StarWildcard, @"\w*");
+                        var regex = new Regex(valueRegex, RegexOptions.Compiled | (_ignoreCasing ? RegexOptions.IgnoreCase : RegexOptions.None));
+
+                        andStatements.Add((filePath) => regex.IsMatch(filePath));
+                    }
+                    else
+                        andStatements.Add((filePath) => filePath.IndexOf(word, _ignoreCasing ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal) >= 0);
                 }
-                else
-                    exactMatches.Add(item.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
+
+                // Add the AND statement
+                orStatements.Add(andStatements.ToArray());
             }
 
-            _exactMatches = exactMatches.ToArray();
-            _regexMatches = regexMatches.ToArray();
+            _matches = orStatements.ToArray();
         }
     }
 }

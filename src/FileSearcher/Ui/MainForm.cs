@@ -429,7 +429,6 @@ namespace FileSearcher.Ui
             var options = new EngineOptions(new[] { directoryInfo })
             {
                 SearchName = text,
-                SearchIncludesFolders = chkIncludeFoldersInResults.Checked,
                 SearchNameIgnoreCasing = chkIgnoreCase.Checked,
                 SearchNameMatchFullPath = chkMatchFullPath.Checked,
                 SearchRecursive = chkRecursive.Checked,

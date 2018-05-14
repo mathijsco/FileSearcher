@@ -44,7 +44,6 @@ namespace FileSearcher.Ui
             this.chkMatchFullPath = new System.Windows.Forms.CheckBox();
             this.cmbFolder = new System.Windows.Forms.ComboBox();
             this.chkFolderFavorites = new System.Windows.Forms.CheckBox();
-            this.chkIncludeFoldersInResults = new System.Windows.Forms.CheckBox();
             this.chkIgnoreCase = new System.Windows.Forms.CheckBox();
             this.cmbCriteria = new System.Windows.Forms.ComboBox();
             this.btnBrowse = new System.Windows.Forms.Button();
@@ -187,7 +186,6 @@ namespace FileSearcher.Ui
             this.tabBasic.Controls.Add(this.chkMatchFullPath);
             this.tabBasic.Controls.Add(this.cmbFolder);
             this.tabBasic.Controls.Add(this.chkFolderFavorites);
-            this.tabBasic.Controls.Add(this.chkIncludeFoldersInResults);
             this.tabBasic.Controls.Add(this.chkIgnoreCase);
             this.tabBasic.Controls.Add(this.cmbCriteria);
             this.tabBasic.Controls.Add(this.btnBrowse);
@@ -206,7 +204,7 @@ namespace FileSearcher.Ui
             // chkSearchInZip
             // 
             this.chkSearchInZip.AutoSize = true;
-            this.chkSearchInZip.Location = new System.Drawing.Point(227, 105);
+            this.chkSearchInZip.Location = new System.Drawing.Point(227, 82);
             this.chkSearchInZip.Name = "chkSearchInZip";
             this.chkSearchInZip.Size = new System.Drawing.Size(112, 17);
             this.chkSearchInZip.TabIndex = 11;
@@ -216,6 +214,8 @@ namespace FileSearcher.Ui
             // chkMatchFullPath
             // 
             this.chkMatchFullPath.AutoSize = true;
+            this.chkMatchFullPath.Checked = true;
+            this.chkMatchFullPath.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkMatchFullPath.Location = new System.Drawing.Point(82, 82);
             this.chkMatchFullPath.Name = "chkMatchFullPath";
             this.chkMatchFullPath.Size = new System.Drawing.Size(96, 17);
@@ -248,16 +248,6 @@ namespace FileSearcher.Ui
             this.toolTip.SetToolTip(this.chkFolderFavorites, "Add or remove from favorites");
             this.chkFolderFavorites.UseVisualStyleBackColor = true;
             this.chkFolderFavorites.Click += new System.EventHandler(this.chkFolderFavorites_Click);
-            // 
-            // chkIncludeFoldersInResults
-            // 
-            this.chkIncludeFoldersInResults.AutoSize = true;
-            this.chkIncludeFoldersInResults.Location = new System.Drawing.Point(227, 82);
-            this.chkIncludeFoldersInResults.Name = "chkIncludeFoldersInResults";
-            this.chkIncludeFoldersInResults.Size = new System.Drawing.Size(139, 17);
-            this.chkIncludeFoldersInResults.TabIndex = 9;
-            this.chkIncludeFoldersInResults.Text = "Include folders in results";
-            this.chkIncludeFoldersInResults.UseVisualStyleBackColor = true;
             // 
             // chkIgnoreCase
             // 
@@ -1015,7 +1005,6 @@ namespace FileSearcher.Ui
         private System.Windows.Forms.CheckBox chkAttributeTemporary;
         private System.Windows.Forms.CheckBox chkAttributeArchive;
         private System.Windows.Forms.CheckBox chkAttributeSystem;
-        private System.Windows.Forms.CheckBox chkIncludeFoldersInResults;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cmbSizeOperator;
         private System.Windows.Forms.Label label3;

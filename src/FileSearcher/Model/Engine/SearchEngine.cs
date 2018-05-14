@@ -174,7 +174,7 @@ namespace FileSearcher.Model.Engine
             var isRoot = level == -1;
 
             // Return the folder, or if it is the file, always. Skip the root level.
-            if (!isRoot && (directoryInfo == null || _engineOptions.SearchIncludesFolders))
+            if (!isRoot)
                 yield return fileSystemInfo;
 
             if (directoryInfo != null && (_engineOptions.SearchRecursive || isRoot)) // Only if recursive or if the level is the root.

@@ -30,8 +30,6 @@ namespace FileSearcher.Model.Engine
 
         public bool SearchRecursive { get; set; }
 
-        public bool SearchIncludesFolders { get; set; }
-
         public bool SearchInArchives { get; set; }
 
         #endregion
