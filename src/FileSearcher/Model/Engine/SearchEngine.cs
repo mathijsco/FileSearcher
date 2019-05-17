@@ -47,7 +47,7 @@ namespace FileSearcher.Model.Engine
         /// <summary>
         /// Gets a list of all the criteria that were used in the current or last operation.
         /// </summary>
-        public IList<ICriterion> UsedCriteria { get; private set; } 
+        public IList<ICriterion> UsedCriteria { get; private set; }
 
         /// <summary>
         /// Value indicating whether the search engine is still running.
@@ -98,7 +98,7 @@ namespace FileSearcher.Model.Engine
 
         private IList<SearchResult> Search(object state)
         {
-            var timer = (TimedCallback<SearchResult>) state;
+            var timer = (TimedCallback<SearchResult>)state;
 
             var criteria = BuildCriteria();
             var list = new List<SearchResult>(64);
@@ -118,20 +118,22 @@ namespace FileSearcher.Model.Engine
                         {
                             var context = c.BuildContext();
 
-                            // Check if the criterion support the target file system type.
-                            if ((c.DirectorySupport && isDir) || (c.FileSupport && !isDir))
+                            if (!c.DirectorySupport && isDir)
                             {
-                                if (c.IsMatch(fileSystemInfo, context))
-                                {
-                                    // Add the context if it is a match.
-                                    if (context != null)
-                                        contexts.Add(c.GetType(), context);
-                                }
-                                else
-                                {
-                                    match = false;
-                                    break;
-                                }
+                                match = false;
+                                break;
+                            }
+
+                            if (c.IsMatch(fileSystemInfo, context))
+                            {
+                                // Add the context if it is a match.
+                                if (context != null)
+                                    contexts.Add(c.GetType(), context);
+                            }
+                            else
+                            {
+                                match = false;
+                                break;
                             }
                         }
                     }

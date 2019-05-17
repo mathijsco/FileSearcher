@@ -19,11 +19,6 @@ namespace FileSearcher.Model.Engine
         /// Indicates whether this criterion instance has support for directories.
         /// </summary>
         bool DirectorySupport { get; }
-        
-        /// <summary>
-        /// Indicates whether this criterion instance has support for files.
-        /// </summary>
-        bool FileSupport { get; }
 
         /// <summary>
         /// Checks if the file or directory matches this criterion.

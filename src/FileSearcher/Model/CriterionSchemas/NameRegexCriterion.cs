@@ -32,11 +32,6 @@ namespace FileSearcher.Model.CriterionSchemas
             get { return true; }
         }
 
-        public bool FileSupport
-        {
-            get { return true; }
-        }
-
         public bool IsMatch(FileSystemInfo fileSystemInfo, ICriterionContext context)
         {
             return IsMatch(_matchFullPath ? fileSystemInfo.FullName : fileSystemInfo.Name);

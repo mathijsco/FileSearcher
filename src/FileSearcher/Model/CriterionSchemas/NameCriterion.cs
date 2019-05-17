@@ -40,11 +40,6 @@ namespace FileSearcher.Model.CriterionSchemas
             get { return true; }
         }
 
-        public virtual bool FileSupport
-        {
-            get { return true; }
-        }
-
         public virtual bool IsMatch(FileSystemInfo fileSystemInfo, ICriterionContext context)
         {
             var name = this.MatchFullPath ? fileSystemInfo.FullName : fileSystemInfo.Name;

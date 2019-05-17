@@ -18,7 +18,6 @@ namespace FileSearcher.Plugin.PsExecutable
             // TODO: Load PS1 script and assign variables
             _script = PowerShellProxy.Create<IScript>(scriptFile);
             this.DirectorySupport = _script.SupportDirectories;
-            this.FileSupport = _script.SupportFiles;
         }
 
         public string Name { get { return "Execute PowerShell script"; } }
@@ -26,8 +25,6 @@ namespace FileSearcher.Plugin.PsExecutable
         public CriterionWeight Weight { get { return CriterionWeight.Heavy;} }
 
         public bool DirectorySupport { get; private set; }
-
-        public bool FileSupport { get; private set; }
 
         public bool IsMatch(FileSystemInfo fileSystemInfo, ICriterionContext context)
         {

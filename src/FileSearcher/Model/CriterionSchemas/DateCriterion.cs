@@ -29,8 +29,6 @@ namespace FileSearcher.Model.CriterionSchemas
 
         public bool DirectorySupport { get { return true; } }
 
-        public bool FileSupport { get { return true; } }
-
         public bool IsMatch(FileSystemInfo fileSystemInfo, ICriterionContext context)
         {
             DateTime dateTimeUtc;

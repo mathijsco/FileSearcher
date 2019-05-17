@@ -15,8 +15,6 @@ namespace FileSearcher.Plugin.CSharp.Criteria
 
         public bool DirectorySupport { get { return false; } }
 
-        public bool FileSupport { get { return true; } }
-
         public bool IsMatch(FileSystemInfo fileSystemInfo, ICriterionContext context)
         {
             if (!fileSystemInfo.Extension.Equals(".csproj", StringComparison.OrdinalIgnoreCase) && !fileSystemInfo.Extension.Equals(".vbproj", StringComparison.OrdinalIgnoreCase))
