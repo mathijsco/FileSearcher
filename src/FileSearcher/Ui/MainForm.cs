@@ -128,8 +128,13 @@ namespace FileSearcher.Ui
                 return;
             }
 
-            var directoryInfo = new DirectoryInfo(cmbFolder.Text.Trim('\\') + "\\");
-            if (!directoryInfo.Exists)
+            DirectoryInfo directoryInfo = null;
+            try
+            {
+                directoryInfo = new DirectoryInfo(cmbFolder.Text.TrimEnd('\\') + "\\");
+            }
+            catch (ArgumentException) { }
+            if (directoryInfo == null || !directoryInfo.Exists)
             {
                 MessageBox.Show(@"The specified folder does not exist.", @"Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
